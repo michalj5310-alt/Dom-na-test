@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U Kačera - Specialista na koupelny</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .email-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .email-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .nav-item {
+            position: relative;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .duck-icon {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        @media (max-width: 768px) {
+            .contact-card {
+                padding: 30px 20px;
+            }
+
+            .duck-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    U Kačera
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <span class="nav-item text-gray-600 hover:text-purple-600" onclick="scrollToSection('hero')">Domů</span>
+                    <span class="nav-item text-gray-600 hover:text-purple-600" onclick="scrollToSection('services')">Co děláme</span>
+                    <span class="nav-item text-gray-600 hover:text-purple-600" onclick="scrollToSection('contact')">Kontakt</span>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="px-6 py-4 space-y-3">
+                <span class="block text-gray-600 hover:text-purple-600" onclick="scrollToSection('hero')">Domů</span>
+                <span class="block text-gray-600 hover:text-purple-600" onclick="scrollToSection('services')">Co děláme</span>
+                <span class="block text-gray-600 hover:text-purple-600" onclick="scrollToSection('contact')">Kontakt</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 pb-10 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center fade-in">
+                <div class="duck-icon mb-8">
+                    🦆
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gray-800">
+                    U <span class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Kačera</span>
+                </h1>
+                <p class="text-2xl md:text-3xl text-gray-600 mb-4 font-light">
+                    Specialista na moderní koupelny
+                </p>
+                <p class="text-lg text-gray-500 mb-12 max-w-2xl mx-auto">
+                    Tvoříme koupelny, které nejsou jen funkčním prostorem, ale místem pro relaxaci a odpočinek
+                </p>
+                <a href="mailto:info@ukacera.cz" class="email-link">
+                    Kontaktujte nás
+                </a>
+                <div class="mt-12 animate-bounce">
+                    <svg class="w-6 h-6 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800">Co děláme</h2>
+                <p class="text-xl text-gray-600">Komplexní služby pro vaši ideální koupelnu</p>
+            </div>
+
+            <div class="service-grid">
+                <div class="service-card hover-lift">
+                    <div class="service-icon mx-auto">
+                        📐
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Návrhy a design</h3>
+                    <p class="text-gray-600">
+                        Profesionální 3D vizualizace a návrhy koupelen na míru vašim představám a možnostem
+                    </p>
+                </div>
+
+                <div class="service-card hover-lift">
+                    <div class="service-icon mx-auto">
+                        🔨
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Rekonstrukce</h3>
+                    <p class="text-gray-600">
+                        Kompletní rekonstrukce stávajících koupelen od demolice až po finální detaily
+                    </p>
+                </div>
+
+                <div class="service-card hover-lift">
+                    <div class="service-icon mx-auto">
+                        ✨
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Realizace</h3>
+                    <p class="text-gray-600">
+                        Precizní provedení všech prací s důrazem na kvalitu materiálů a detaily
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <div class="inline-block bg-gradient-to-r from-purple-100 to-indigo-100 rounded-2xl p-8">
+                    <p class="text-lg text-gray-700 font-medium mb-2">
+                        ✓ 10 let zkušeností v oboru
+                    </p>
+                    <p class="text-lg text-gray-700 font-medium mb-2">
+                        ✓ 100+ spokojených zákazníků
+                    </p>
+                    <p class="text-lg text-gray-700 font-medium">
+                        ✓ Garance kvality provedení
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto max-w-4xl">
+            <div class="contact-card">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-800">Kontaktujte nás</h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Máte představu o vaší vysněné koupelně? Rádi ji pro vás zrealizujeme!
+                    </p>
+
+                    <div class="mb-8">
+                        <p class="text-lg text-gray-700 mb-4">
+                            Napište nám e-mail a my se vám obratem ozveme s nezávaznou nabídkou
+                        </p>
+                        <a href="mailto:info@ukacera.cz" class="email-link text-2xl px-12 py-4">
+                            info@ukacera.cz
+                        </a>
+                    </div>
+
+                    <div class="mt-12 pt-8 border-t border-gray-200">
+                        <div class="flex flex-wrap justify-center gap-8 text-gray-600">
+                            <div>
+                                <p class="font-semibold text-gray-800 mb-1">Ozvěme se do</p>
+                                <p>24 hodin</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800 mb-1">Konzultace</p>
+                                <p>Zdarma</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800 mb-1">Realizace</p>
+                                <p>Průběžně</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 px-6">
+        <div class="container mx-auto text-center">
+            <p class="text-2xl font-bold mb-2">U Kačera</p>
+            <p class="text-gray-400 mb-4">Váš partner pro moderní koupelny</p>
+            <p class="text-sm text-gray-500">
+                © 2024 U Kačera. Všechna práva vyhrazena.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            element.scrollIntoView({ behavior: 'smooth' });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
